@@ -1,68 +1,77 @@
 <template>
+<section>
+  <cabecalho />
   <div class="container">
     <h2>{{ titulo }}</h2>
     <div class="input-group">
-      <input @keyup.enter="adicionarTarefa" v-model="novaTarefa" type="text"/>
+      <input @keyup.enter="adicionarTarefa" v-model="novaTarefa" type="text" />
       <span class="input-group-btn">
-        <button @click="adicionarTarefa" class="btn btn">Adicionar</button>  
+        <button @click="adicionarTarefa" class= "btn btn-primary">Adicionar
+
+        </button>
       </span>
     </div>
     <ul>
-      <li v-for="(tarefa, index) in tarefas" :key="index" :class="{'removed': tarefa.checked}">
-        <input type="checkbox" v-model="tarefa.checked">
-        <label>{{tarefa.titulo}}</label>
+      <li v-for="(tarefa, index) in tarefas" :key="index" :class="{ removed: tarefa.checked }">
+        <input type="checkbox" v-model="tarefa.checked"/>
+        <label>{{ tarefa.titulo }}</label>
       </li>
     </ul>
-    
     <footer>
-      <em>Altere aqui o seu titulo da lista de tarefas</em>
-      <input v-model="titulo" type="text" />
-      </footer>
-  </div>
- </template>
+      <em>Altere aqui o titulo da sua lista de tarefas</em>
+      <input v-model="titulo" type="text"/>
+    
+    
+    </footer>
+    </div>
+   <rodape /> 
+</section>
+  
+</template>
 
 <script>
+import Cabecalho from "@/components/Cabecalho";
+import Rodape from "@/components/Rodape";
 export default {
   name: 'App',
-  data(){
-    return {
-      titulo:"minha lista de tarefas",
-      novaTarefa:"",
-      tarefas:[
-        {titulo:"estudar", checked: false},
-        {titulo:"programar", checked: true},
-      ]
+  components: { Cabecalho, Rodape },
+  data() {
+   return {
+     titulo: "Minha lista de tarefas",
+     novaTarefa: "",
+     tarefas: [
+       { titulo: "Estudar", checked: false },
+       { titulo: "Programar", checked: true },
+      ],
     };
-  },
-  methods :{
-    adicionarTarefa(){
-      this.tarefas
-      .push({
-        titulo: this.novaTarefa, 
+  }, 
+  methods: {
+    adicionarTarefa() {
+      this.tarefas.push({
+        titulo: this.novaTarefa,
         checked: false
       });
-      this.novaTarefa="";
-    },
-  }
+      this.novaTarefa = "";
+    }
+    }
 };
+
 </script>
-  
+
 <style>
-.container {
+  .container {
     width: 40%;
     margin: 20px auto 0px auto;
   }
-
-  ul li{
+  ul li {
     list-style: none;
-  }
+    }
 
-  .removed {
-    color: gray;
-  }
-
-  .removed label{
-    text-decoration: line-through;
-  }
-</style> 
-
+    .removed {
+      color: gray;
+      }
+    
+    .removed label {
+      text-decoration: line-through;
+      }
+</style>
